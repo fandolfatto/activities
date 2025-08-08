@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000
 
 import {activitiesRouter} from './routes/activities.js'
 
-//express comprend ainsi les données que l'on retourne (les requêtes entrantes) sont au format json
+//le serveur Express comprend que les données sont envoyées en JSON dans le corps de la requête (req.body)
 app.use(express.json())
 
 app.get('/', (req, res) => {
