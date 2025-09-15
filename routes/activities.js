@@ -9,7 +9,7 @@ const activitiesRouter = express.Router();
 //let lstActivities = []
 activitiesRouter.get('/', async (req, res) => {
     const activities = await db.getAllActivities();
-    res.json(activities)
+    res.json(activities);
 })
 
 activitiesRouter.get("/:id", async (req, res) => {

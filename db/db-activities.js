@@ -11,6 +11,8 @@ const con = await mysql.createConnection({
 const db = {
 
     getAllActivities: async () => {
+        //the getAllActivities function waits until the query is finished to execute
+        //if there is some code after the call of this function, it will be executed without waiting the execution of this function
         const [rows] = await con.query('SELECT * FROM activities');
         return rows;
     },
