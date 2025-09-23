@@ -13,13 +13,41 @@ const db = {
         });
     },
 
-    getAllActivities: async () => {
+    getAllActivities: async (limit) => {
         let con;
         try {
             con = await db.connectToDB();
             //the getAllActivities function waits until the query is finished to execute
             //if there is some code after the call of this function, it will be executed without waiting the execution of this function
-            const [rows] = await con.query('SELECT * FROM activities');
+            let request = 'SELECT * FROM activities';
+            if (limit != null) {
+                request = `${request} limit ${limit}`;
+            }
+            const [rows] = await con.query(request);
+            return rows;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        } finally {
+            if (con) {await db.disconnectFromDatabase(con); }
+        }
+
+    },
+
+    getActivitiesByName: async (name, limit) => {
+        let con;
+        try {
+            con = await db.connectToDB();
+            //the getAllActivities function waits until the query is finished to execute
+            //if there is some code after the call of this function, it will be executed without waiting the execution of this function
+            //const [rows] = await con.query('SELECT * FROM activities where name like ?', ['%' + name + '%']);
+            let request = 'SELECT * FROM activities where name like ?';
+            let values = [`%${name}%`];
+            if (limit != null) {
+                request = `${request} limit ${limit}`;
+                values.push(limit)
+            }
+            const [rows] = await con.query(request, values);
             return rows;
         } catch (err) {
             console.log(err);

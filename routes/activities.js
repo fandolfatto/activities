@@ -7,7 +7,24 @@ const activitiesRouter = express.Router();
 
 activitiesRouter.get('/', async (req, res) => {
     try {
-        const activities = await db.getAllActivities();
+        const name = req.query.name;
+        let limit;
+        if (req.query.limit) {
+            limit = parseInt(req.query.limit);
+        } else {
+            limit = null;
+        }
+
+        let activities;
+        if (name) {
+            if (name.length <= 2) {
+                return res.status(400).json({ error: "Le paramètre de recherche doit contenir au moins 3 caractères." });
+            } else {
+                activities = await db.getActivitiesByName(name, limit);
+            }
+        } else {
+            activities = await db.getAllActivities(limit);
+        }
         res.json(activities);
     } catch (error) {
         res.status(500).json({error: error.message});
