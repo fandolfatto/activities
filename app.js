@@ -25,6 +25,12 @@ app.get('/api/', (req, res) => {
 
 app.use('/api/activities', activitiesRouter);
 
+// if no route exists
+app.use((req, res) => {
+    const message = "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
+    res.status(404).json(message);
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
