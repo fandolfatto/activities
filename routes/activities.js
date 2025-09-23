@@ -1,9 +1,6 @@
-//import {activities} from "../db/mock-activities.js";
 import express from "express";
-import {getNewID} from "../utils/utils.js";
 import { db } from "../db/db-activities.js";
 import {isValidId, checkData} from "../helper.mjs";
-import {activities} from "../db/mock-activities.js";
 
 // create a specific router for the activities, app.js won't be too big
 const activitiesRouter = express.Router();

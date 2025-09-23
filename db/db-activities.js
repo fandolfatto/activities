@@ -4,14 +4,13 @@ import mysql from 'mysql2/promise';
 const db = {
 
     connectToDB: async () => {
-        const con = await mysql.createConnection({
+        return await mysql.createConnection({
             host: "localhost",
             user: "root",
             password: "P@ssw0rd",
-            port:3308,
+            port: 3308,
             database: "app_activities",
         });
-        return con;
     },
 
     getAllActivities: async () => {

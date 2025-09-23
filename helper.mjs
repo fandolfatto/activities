@@ -3,17 +3,11 @@ function isValidId(value) {
 }
 
 function checkDuration(value) {
-    if (value > 0 && value <= 144)
-        return true;
-    else return false;
+    return value > 0 && value <= 144;
 }
 
 function checkDataNotEmpty(value) {
-    if (value === null || value === undefined || value === ""){
-        return false;
-    } else {
-         return true;
-    }
+    return !(value === null || value === undefined || value === "");
 }
 
 //other syntax for the declaration of a function
