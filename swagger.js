@@ -27,6 +27,15 @@ const options = {
                         "duration" : {"type": "integer", "example" :"8", "description" : "durée de l'activité (en heures)" }
                     },
                 },
+                "newactivity":
+                {
+                    "properties":
+                        {
+                            "name": { "type": "string", "example" :"sortie neige", "description" : "nom de l'activité"  },
+                            "activity_date" : { "type": "date", "example" :"2025.09.24", "description" : "date de l'activité"  },
+                            "duration" : {"type": "integer", "example" :"8", "description" : "durée de l'activité (en heures)" }
+                        },
+                },
             },
         }
     },

@@ -80,6 +80,32 @@ activitiesRouter.get("/:id", async (req, res) => {
     }
 });
 
+/**
+ * @openapi
+ * /api/activities/create:
+ *   post:
+ *     summary: returns a list of activities.
+ *     description: get all activities in the CPNV
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/newactivity'
+ *     responses:
+ *       200:
+ *         description: Returns an array of activities.
+ *         content:
+ *             application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                    $ref: "#/components/schemas/activity"
+ *       400:
+ *         description: incorrect values
+ *       500:
+ *         description: system exception describing the error.
+ */
 activitiesRouter.post('/create', async (req, res) => {
     try {
         checkData(req.body)
