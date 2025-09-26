@@ -1,11 +1,15 @@
 import express from 'express'
+import swaggerUi from 'swagger-ui-express';
 const app = express()
 const port = process.env.PORT || 3000
 
 import {activitiesRouter} from './routes/activities.js'
+import {openApiSpecification} from './swagger.js'
 
 //le serveur Express comprend que les données sont envoyées en JSON dans le corps de la requête (req.body)
 app.use(express.json())
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiSpecification, {explorer :true}));
 
 //pour frontend
 app.use((req, res, next) => {

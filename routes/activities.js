@@ -5,6 +5,38 @@ import {isValidId, checkData} from "../helper.mjs";
 // create a specific router for the activities, app.js won't be too big
 const activitiesRouter = express.Router();
 
+
+/**
+ * @openapi
+ * /api/activities:
+ *   get:
+ *     summary: returns a list of activities.
+ *     description: get all activities in the CPNV
+ *     parameters:
+ *       - name: name
+ *         in: query
+ *         required: false
+ *         schema:
+ *              type: string
+ *              description: name of the activity
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         schema:
+ *              type: integer
+ *              description: number of activities returned
+ *     responses:
+ *       200:
+ *         description: Returns an array of activities.
+ *         content:
+ *             application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                    $ref: "#/components/schemas/activity"
+ *       500:
+ *         description: system exception describing the error.
+ */
 activitiesRouter.get('/', async (req, res) => {
     try {
         const name = req.query.name;
