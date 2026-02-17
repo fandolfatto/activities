@@ -2,6 +2,7 @@ import express from 'express'
 import swaggerUi from 'swagger-ui-express';
 const app = express()
 //const port = process.env.PORT || 3001
+const path = require('path');
 const port = 80
 
 import {activitiesRouter} from './routes/activities.js'
