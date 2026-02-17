@@ -2,11 +2,15 @@ import express from 'express'
 import swaggerUi from 'swagger-ui-express';
 const app = express()
 //const port = process.env.PORT || 3001
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
 const port = 80
 
 import {activitiesRouter} from './routes/activities.js'
 import {openApiSpecification} from './swagger.js'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //le serveur Express comprend que les données sont envoyées en JSON dans le corps de la requête (req.body)
 app.use(express.json())
