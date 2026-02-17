@@ -30,6 +30,13 @@ app.get('/api/', (req, res) => {
 
 app.use('/api/activities', activitiesRouter);
 
+//Fichiers statiques pour Vue
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 // if no route exists
 app.use((req, res) => {
     const message = "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
