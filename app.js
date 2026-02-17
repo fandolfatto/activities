@@ -1,7 +1,8 @@
 import express from 'express'
 import swaggerUi from 'swagger-ui-express';
 const app = express()
-const port = process.env.PORT || 3000
+//const port = process.env.PORT || 3001
+const port = 80
 
 import {activitiesRouter} from './routes/activities.js'
 import {openApiSpecification} from './swagger.js'
