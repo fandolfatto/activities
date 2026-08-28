@@ -8,6 +8,7 @@ activitiesRouter.get('/', (req, res) => {
     res.json(activities)
 })
 
+//:id est un paramètre dynamique de l'URL
 activitiesRouter.get("/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const activity = activities.find(value => value.id === id);
