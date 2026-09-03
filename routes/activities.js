@@ -1,6 +1,4 @@
-//import {activities} from "../db/mock-activities.js";
 import express from "express";
-import {getNewID} from "../utils/utils.js";
 import { db } from "../db/db-activities.js";
 
 // create a specific router for the activities, app.js won't be too big
@@ -22,7 +20,6 @@ activitiesRouter.post('/create', async (req, res) => {
     const newActivity = await db.createActivity(req.body);
     const message = `L'activité ${newActivity.name} a bien été créée !`;
     res.json({message : message, activity : newActivity});
-    //res.send('new activity successfully added')
 })
 
 activitiesRouter.put('/:id', async (req, res) => {
