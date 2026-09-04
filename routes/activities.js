@@ -1,6 +1,6 @@
 import express from "express";
 import { db } from "../db/db-activities.js";
-import {isValidId, checkData} from "../helper.mjs";
+import {isValidId, checkData} from "../helper.js";
 
 // create a specific router for the activities, app.js won't be too big
 const activitiesRouter = express.Router();
@@ -22,7 +22,7 @@ activitiesRouter.get("/:id", async (req, res) => {
         }
         const activity = await db.getActivityById(id);
         if (activity === undefined) {
-            res.status(404).json({error: "Activitée non trouvée"});
+            res.status(404).json({error: "Activité non trouvée"});
         } else {
             res.json({activity});
         }
@@ -55,7 +55,7 @@ activitiesRouter.put('/:id', async (req, res) => {
     try {
         const resUpdateActivitiesNb = await db.updateActivity(req.params.id, req.body);
         if (resUpdateActivitiesNb === 0) {
-            res.status(404).json({error: "Activitée non trouvée"});
+            res.status(404).json({error: "Activité non trouvée"});
         } else {
             const activityUpdated = await db.getActivityById(req.params.id);
             res.json({message: 'Activity updated', updateActivity : {activityUpdated}});
@@ -74,9 +74,9 @@ activitiesRouter.delete('/:id', async (req, res) => {
         }
         let deletedActivity = await db.deleteActivity(req.params.id);
         if (deletedActivity.success) {
-            res.json({message: 'Activity deleted'});
+            res.json({message: 'Activité supprimée'});
         } else {
-            res.status(404).json({error: "Activitée non trouvée."});
+            res.status(404).json({error: "Activité non trouvée"});
         }
     } catch (error) {
         res.status(500).json({error: error.message});
