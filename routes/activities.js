@@ -16,7 +16,7 @@ activitiesRouter.get('/', async (req, res) => {
 
 activitiesRouter.get("/:id", async (req, res) => {
     try {
-        const id = parseInt(req.params.id);
+        const id = Number(req.params.id);
         if (!isValidId(id)) {
             return res.status(400).json({ error: "ID invalide" });
         }
@@ -68,7 +68,7 @@ activitiesRouter.put('/:id', async (req, res) => {
 
 activitiesRouter.delete('/:id', async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = Number(req.params.id);
         if (!isValidId(id)) {
             return res.status(400).json({ error: "ID invalide" });
         }
